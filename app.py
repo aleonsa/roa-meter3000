@@ -21,10 +21,6 @@ def index() -> str:
 
 
 def getdata() -> Iterator[str]:
-    """
-    Generates random value between 0 and 100
-    :return: String containing current timestamp (YYYY-mm-dd HH:MM:SS) and randomly generated data.
-    """
     if request.headers.getlist("X-Forwarded-For"):
         client_ip = request.headers.getlist("X-Forwarded-For")[0]
     else:
@@ -82,6 +78,12 @@ def off():
         outfile.write(obj_json)
     print ("Apagado Padre")
     return('')
+
+@application.route('/gps')
+def gps():
+    f = open('gps.json')
+    data_gps = json.load(f)
+    return(data_gps)
 
 if __name__ == "__main__":
     application.run(host="0.0.0.0", threaded=True)

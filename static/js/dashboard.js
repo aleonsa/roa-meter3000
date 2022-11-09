@@ -300,3 +300,18 @@
       return false;
     });
   });
+
+  $("button#gps").on('click', function(e) {
+    e.preventDefault()
+      $.getJSON('/gps',
+          function(data) {
+            data = 'Last registered location: ' + data;
+            $("#gps_info").html(data);
+      });
+      return false;
+  });
+  function getSummary(id)
+{
+   
+
+}
